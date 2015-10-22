@@ -12,9 +12,7 @@ var styles = {
         borderRadius: 4,
         color: 'white',
         padding: '2em',
-        'MozUserSelect': 'none',
         'WebkitUserSelect': 'none',
-        'MsUserSelect': 'none',
         width: '100%',
         height: '50%',
 
@@ -33,10 +31,7 @@ class Info extends Component {
     render() {
         return (
             <div className={classNames(styles.bass)}
-                 style={[
-                 styles.base,
-                 this.props.block && styles.block,
-                 styles.bass]}>
+                 style={styles.base}>
                 <h1>Information:</h1>
 
                 <p>{this.props.info}</p>
