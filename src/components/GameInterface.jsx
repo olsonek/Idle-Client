@@ -25,7 +25,7 @@ class GameInterface extends Component {
         self = this;
         return (
             <div id="userInterface" style={[styles.userInterface]}>
-                <button onClick={self.toggle}>Test</button>
+                <button onClick={GameInterface.toggle}>Test</button>
                 <script></script>
             </div>
         )

@@ -71,8 +71,6 @@ class Game extends Component {
                     normal = true;
                 }
             });
-
-            emitter.emit('toggle');
         }
 
         function update() {
@@ -83,7 +81,7 @@ class Game extends Component {
         var self = this;
         return <div className="game">
             <div id="gameArea"></div>
-            {this.destroyGame()}
+            {Game.destroyGame()}
             {this.initializeGame(self.props.gameWidth, self.props.gameHeight, self.props.emitter)}
             <GameInterface emitter={self.props.emitter}/>
         </div>
