@@ -2,11 +2,14 @@
  * Created by Eddie on 10/20/2015.
  */
 import React from 'react';
-import Game from './Game';
-import Info from './Info';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import {fromJS} from 'immutable';
 import {EventEmitter} from 'fbemitter';
+
+//Components
+import Game from './Game';
+import Triptic from './Triptic.js';
 
 const info = fromJS({
     Eddie: 1,
@@ -14,9 +17,9 @@ const info = fromJS({
 }).keySeq();
 
 const style = {
-    main: ['clearfix'],
-    game: ['left', 'p2'],
-    info: ['left', 'p2']
+    main: ['svg'],
+    game: ['top'],
+    triptic: ['bottom']
 };
 
 export default React.createClass({
@@ -27,9 +30,12 @@ export default React.createClass({
     render: function () {
         return <div className={classNames(style.main)}>
             {this.createEmitter()}
-            <div className={classNames(style.game)}><Game gameWidth="300" gameHeight="704" emitter={this.emitter}/>
+            <div className={classNames(style.game)}>
+                <Game emitter={this.emitter}/>
             </div>
-            <div className={classNames(style.info)}><Info info={info} block={false} toggle={this.toggle}/></div>
+            <div className={classNames(style.triptic)}>
+                <Triptic info={info}/>
+            </div>
         </div>;
     }
 });

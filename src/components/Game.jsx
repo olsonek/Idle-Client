@@ -2,7 +2,7 @@
  * Created by Eddie on 10/20/2015.
  */
 import React, {Component} from 'react';
-import Radium from 'radium';
+import Dimensions from 'react-dimensions';
 
 import GameInterface from './GameInterface';
 import {EventEmitter} from 'fbemitter';
@@ -25,24 +25,27 @@ var styles = {
 };
 
 var game;
+var exists = false;
 
-class Game extends Component {
+var Game = React.createClass({
+    initializeGame: function (gameWidth, gameHeight, emitter) {
+        if (exists) {
+            try {
+                game.destroy();
 
-    static destroyGame() {
-        if(game){
-            game.destroy();
+            } catch (err) {
+            }
+            //noinspection JSUnusedAssignment
+            exists = false;
         }
-    }
-
-    initializeGame(gameWidth, gameHeight, emitter) {
-        game = new Phaser.Game(Number(gameWidth), Number(gameHeight), Phaser.AUTO, 'gameArea', {
+        game = new Phaser.Game(Math.floor(Number(gameWidth)), Number(gameHeight), Phaser.AUTO, 'gameArea', {
             preload: preload,
             create: create,
             update: update
         });
-
+        exists = true;
         function preload() {
-            game.load.image('background', 'images/empire_state_building_cropped.jpg');
+            game.load.image('background', 'images/montreal_ultrawide.jpg');
         }
 
         /*
@@ -55,19 +58,23 @@ class Game extends Component {
          var scoreText;
          */
         function create() {
-            var background = game.add.sprite(0, 0, 'background');
-            background.scale.x = 2 / 3;
-            background.scale.y = 2 / 3;
+            var background = game.add.sprite(-700, -150, 'background');
+            background.scale.x = 1 / 2;
+            background.scale.y = 1 / 2;
             var normal = true;
 
             emitter.addListener('toggle', () => {
                 if (normal) {
                     background.scale.x = 1;
                     background.scale.y = 1;
+                    background.x = -1500;
+                    background.y = -400;
                     normal = false;
                 } else {
-                    background.scale.x = 2 / 3;
-                    background.scale.y = 2 / 3;
+                    background.scale.x = 1 / 2;
+                    background.scale.y = 1 / 2;
+                    background.x = -700;
+                    background.y = -150;
                     normal = true;
                 }
             });
@@ -75,17 +82,14 @@ class Game extends Component {
 
         function update() {
         }
-    }
-
-    render() {
-        var self = this;
+    },
+    render: function () {
         return <div className="game">
             <div id="gameArea"></div>
-            {Game.destroyGame()}
-            {this.initializeGame(self.props.gameWidth, self.props.gameHeight, self.props.emitter)}
-            <GameInterface emitter={self.props.emitter}/>
+            {this.initializeGame(this.props.containerWidth, "300", this.props.emitter)}
+            <GameInterface emitter={this.props.emitter}/>
         </div>
     }
-}
+});
 
-module.exports = Radium(Game);
+module.exports = Dimensions()(Game);

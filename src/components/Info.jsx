@@ -14,15 +14,11 @@ var styles = {
         padding: '2em',
         'WebkitUserSelect': 'none',
         width: '100%',
-        height: '50%',
+        height: '100%',
+        display: 'table',
 
-        ':hover': {background: 'red'},
-        ':focus': {background: 'green'},
-        ':active': {background: 'yellow'}
-    },
-    block: {
-        display: 'block',
-        background: 'orange'
+        ':hover': {background: 'red', color: 'black'},
+        ':active': {background: 'green', color: 'white'}
     },
     bass: ['italic']
 };
