@@ -1,7 +1,7 @@
 /**
  * Created by Eddie on 10/20/2015.
  */
-import React, {Component} from 'react';
+import React from 'react';
 import Radium from 'radium';
 import classNames from 'classnames';
 
@@ -13,9 +13,6 @@ var styles = {
         color: 'white',
         padding: '2em',
         'WebkitUserSelect': 'none',
-        width: '100%',
-        height: '100%',
-        display: 'table',
 
         ':hover': {background: 'red', color: 'black'},
         ':active': {background: 'green', color: 'white'}
@@ -23,8 +20,8 @@ var styles = {
     bass: ['italic']
 };
 
-class Info extends Component {
-    render() {
+var Info = React.createClass({
+    render: function () {
         return (
             <div className={classNames(styles.bass)}
                  style={styles.base}>
@@ -34,6 +31,6 @@ class Info extends Component {
             </div>
         );
     }
-}
+});
 
-module.exports = Radium(Info);
+export default Info;

@@ -92,4 +92,4 @@ var Game = React.createClass({
     }
 });
 
-module.exports = Dimensions()(Game);
+export default Dimensions()(Game);

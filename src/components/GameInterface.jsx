@@ -1,7 +1,7 @@
 /**
  * Created by Eddie on 10/21/2015.
  */
-import React, {Component} from 'react';
+import React from 'react';
 import Radium from 'radium';
 import ReactDOM from 'react-dom';
 
@@ -18,10 +18,8 @@ var styles = {
 };
 var self = this;
 
-class GameInterface extends Component {
-
-
-    render() {
+var GameInterface = React.createClass({
+    render: function () {
         self = this;
         return (
             <div id="userInterface" style={[styles.userInterface]}>
@@ -29,12 +27,12 @@ class GameInterface extends Component {
                 <script></script>
             </div>
         )
-    }
+    },
 
-    static toggle() {
+    toggle: function () {
         //console.log('toggle!');
         self.props.emitter.emit('toggle');
     }
-}
+});
 
-module.exports = Radium(GameInterface);
+export default Radium(GameInterface);

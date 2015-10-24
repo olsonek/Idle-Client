@@ -6,36 +6,31 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import {fromJS} from 'immutable';
 import {EventEmitter} from 'fbemitter';
+import Dimensions from 'react-dimensions';
 
 //Components
 import Game from './Game';
 import Triptic from './Triptic.js';
 
-const info = fromJS({
-    Eddie: 1,
-    Rob: 3
-}).keySeq();
-
 const style = {
-    main: ['svg'],
     game: ['top'],
     triptic: ['bottom']
 };
 
-export default React.createClass({
+module.exports = Dimensions()(React.createClass({
     emitter: EventEmitter,
     createEmitter: function () {
         this.emitter = new EventEmitter();
     },
     render: function () {
-        return <div className={classNames(style.main)}>
+        return <div>
             {this.createEmitter()}
             <div className={classNames(style.game)}>
                 <Game emitter={this.emitter}/>
             </div>
             <div className={classNames(style.triptic)}>
-                <Triptic info={info}/>
+                <Triptic/>
             </div>
         </div>;
     }
-});
+}));
