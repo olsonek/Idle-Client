@@ -16,21 +16,18 @@ var styles = {
 
         ':hover': {background: 'red', color: 'black'},
         ':active': {background: 'green', color: 'white'}
-    },
-    bass: ['italic']
+    }
 };
 
 var Info = React.createClass({
     render: function () {
         return (
-            <div className={classNames(styles.bass)}
-                 style={styles.base}>
+            <div style={styles.base}>
                 <h1>Information:</h1>
-
                 <p>{this.props.info}</p>
             </div>
         );
     }
 });
 
-export default Info;
+export default Radium(Info);

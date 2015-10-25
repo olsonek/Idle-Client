@@ -18,12 +18,12 @@ var Workers = React.createClass({
                     </tr>
                     </thead>
                     <tbody>
-                    {this.props.workers.map(function(worker) {
+                    {this.props.workers.map(function(worker,index) {
                         return(
-                        <tr>
-                            <td>{worker.get('name')}</td>
-                            <td>{worker.get('job', 'none')}</td>
-                            <td>{worker.get('task', 'none')}</td>
+                        <tr key={index}>
+                            <td>{worker[0]}</td>
+                            <td>{worker[1]}</td>
+                            <td>{worker[2]}</td>
                         </tr>
                             );
                         })}

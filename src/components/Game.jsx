@@ -1,11 +1,10 @@
 /**
  * Created by Eddie on 10/20/2015.
  */
-import React, {Component} from 'react';
+import React from 'react';
 import Dimensions from 'react-dimensions';
-
 import GameInterface from './GameInterface';
-import {EventEmitter} from 'fbemitter';
+var {EventEmitter} = require('fbemitter');
 
 require.context("../../assets", true);
 

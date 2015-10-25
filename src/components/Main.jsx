@@ -4,9 +4,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import {fromJS} from 'immutable';
-import {EventEmitter} from 'fbemitter';
 import Dimensions from 'react-dimensions';
+
+var {EventEmitter} = require('fbemitter');
 
 //Components
 import Game from './Game';
@@ -17,7 +17,7 @@ const style = {
     triptic: ['bottom']
 };
 
-module.exports = Dimensions()(React.createClass({
+export default Dimensions()(React.createClass({
     emitter: EventEmitter,
     createEmitter: function () {
         this.emitter = new EventEmitter();

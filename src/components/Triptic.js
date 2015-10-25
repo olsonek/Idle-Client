@@ -3,8 +3,9 @@
  */
 import React from 'react';
 import classNames from 'classnames';
-import {fromJS} from 'immutable';
-import {EventEmitter} from 'fbemitter';
+import Immutable from 'seamless-immutable';
+
+var {EventEmitter} = require('fbemitter');
 
 // Panels
 import Info from './Info';
@@ -12,24 +13,24 @@ import Chat from './Chat';
 import Workers from './Workers';
 
 
-const info = fromJS({
-    3: {name: 'Bobby'},
-    4: {name: 'Frank', job: 'Miner', task: 'Mine Ore'},
-    5: {name: 'Jimmy', job: 'Coder', task: 'Write Code'}
-});
+const info = [
+    ['Bobby'],
+    ['Frank','Miner', 'Mine Ore'],
+    ['Jimmy', 'Coder', 'Write Code']
+];
 
 export default React.createClass({
     render: function () {
         return (
             <section className={classNames('container', 'px2', 'border')}>
-                <div className={classNames('clearfix', 'mxn2')}>
-                    <div className={classNames('bg-olive', 'sm-col', 'sm-col-4', 'border', 'px2')}>
+                <div className={classNames('clearfix', 'mxn2', 'bg-silver')}>
+                    <div className={classNames('sm-col', 'sm-col-4', 'border', 'px2', 'bg-darken-3')}>
                         <Info info={info}/>
                     </div>
-                    <div className={classNames('bg-teal', 'sm-col', 'sm-col-4', 'border', 'px2')}>
+                    <div className={classNames('sm-col', 'sm-col-4', 'border', 'px2', 'bg-darken-3')}>
                         <Chat info={info}/>
                     </div>
-                    <div className={classNames('bg-olive', 'sm-col', 'sm-col-4', 'border', 'px2')}>
+                    <div className={classNames('sm-col', 'sm-col-4', 'border', 'px2', 'bg-darken-3')}>
                         <Workers workers={info}/>
                     </div>
                 </div>

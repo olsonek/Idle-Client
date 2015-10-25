@@ -1,7 +1,7 @@
 /**
  * Created by Eddie on 10/22/2015.
  */
-import React, {Component} from 'react';
+import React from 'react';
 import Radium from 'radium';
 import classNames from 'classnames';
 

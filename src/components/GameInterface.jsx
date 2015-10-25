@@ -23,7 +23,7 @@ var GameInterface = React.createClass({
         self = this;
         return (
             <div id="userInterface" style={[styles.userInterface]}>
-                <button onClick={GameInterface.toggle}>Test</button>
+                <button onClick={this.toggle}>Test</button>
                 <script></script>
             </div>
         )
