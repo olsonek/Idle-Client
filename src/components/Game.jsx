@@ -31,7 +31,6 @@ var Game = React.createClass({
         if (exists) {
             try {
                 game.destroy();
-
             } catch (err) {
             }
             //noinspection JSUnusedAssignment

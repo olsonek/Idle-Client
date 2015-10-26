@@ -22,12 +22,13 @@ var styles = {
 
 var Chat = React.createClass({
     render: function () {
+        var self = this;
         return (
             <div className={classNames(styles.bass)}
                  style={styles.base}>
-                <h1>Chat</h1>
+                <h2>Chat</h2>
 
-                <p>{this.props.info}</p>
+                <p>{self.props.info}</p>
             </div>
         );
     }

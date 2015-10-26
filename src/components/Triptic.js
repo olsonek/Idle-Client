@@ -2,8 +2,8 @@
  * Created by Eddie on 10/22/2015.
  */
 import React from 'react';
+import Radium from 'radium';
 import classNames from 'classnames';
-import Immutable from 'seamless-immutable';
 
 var {EventEmitter} = require('fbemitter');
 
@@ -12,26 +12,48 @@ import Info from './Info';
 import Chat from './Chat';
 import Workers from './Workers';
 
+import Worker from './Worker';
 
-const info = [
-    ['Bobby'],
-    ['Frank','Miner', 'Mine Ore'],
-    ['Jimmy', 'Coder', 'Write Code']
+
+const workers = [
+    ['1', 'm', 'Eddie', 'Coder'],
+    ['2', 'b', 'Bobby'],
+    ['4', 'm', 'Frank', 'Miner', 'Mine Ore'],
+    ['7', 'm', 'Logan', 'Coder'],
+    ['8', 'f', 'Alice'],
+    ['9', 'g', 'Sarah', 'Student']
 ];
 
-export default React.createClass({
+var Triptic = React.createClass({
+    getInitialState: function () {
+        return {};
+    },
+    selectWorker: function () {
+        this.setState({selectedWorker: 1});
+    },
+    getWorker: function (workerId) {
+        for (var worker in workers) {
+            if (worker[0] === workerId) {
+                return worker;
+            }
+        }
+        return undefined;
+    },
     render: function () {
+        var self = this;
         return (
-            <section className={classNames('container', 'px2', 'border')}>
-                <div className={classNames('clearfix', 'mxn2', 'bg-silver')}>
+            <section className={classNames('container', 'px2', 'border', 'unselectable')}>
+                <div className={classNames('clearfix', 'mxn2')}>
                     <div className={classNames('sm-col', 'sm-col-4', 'border', 'px2', 'bg-darken-3')}>
-                        <Info info={info}/>
+                        {self.state.selectedWorker ?
+                            <Worker worker={self.getWorker(self.state.selectedWorker)}/> :
+                            <Workers workers={workers} selectWorker={self.selectWorker}/>}
+                    </div>
+                    <div className={classNames('sm-col', 'sm-col-4', 'border', 'px2', 'bg-darken-1')}>
+                         <Info workers={workers} />
                     </div>
                     <div className={classNames('sm-col', 'sm-col-4', 'border', 'px2', 'bg-darken-3')}>
-                        <Chat info={info}/>
-                    </div>
-                    <div className={classNames('sm-col', 'sm-col-4', 'border', 'px2', 'bg-darken-3')}>
-                        <Workers workers={info}/>
+                        <Chat/>
                     </div>
                 </div>
             </section>
@@ -39,21 +61,4 @@ export default React.createClass({
     }
 });
 
-/*
- <section class="container px2 py3">
- <div class="clearfix mxn2">
- <div class="sm-col sm-col-4 px2">
- <h2 class="h1 mb0">Bacon</h2>
- <p>Bacon ipsum dolor sit amet chuck prosciutto landjaeger ham hock filet mignon shoulder hamburger pig venison. Ham bacon corned beef, sausage kielbasa flank tongue pig drumstick capicola swine short loin ham hock kevin.</p>
- </div>
- <div class="sm-col sm-col-4 px2">
- <h2 class="h1 mb0">Bratwurst</h2>
- <p>Bacon ipsum dolor sit amet chuck prosciutto landjaeger ham hock filet mignon shoulder hamburger pig venison. Ham bacon corned beef, sausage kielbasa flank tongue pig drumstick capicola swine short loin ham hock kevin.</p>
- </div>
- <div class="sm-col sm-col-4 px2">
- <h2 class="h1 mb0">Andouille</h2>
- <p>Bacon ipsum dolor sit amet chuck prosciutto landjaeger ham hock filet mignon shoulder hamburger pig venison. Ham bacon corned beef, sausage kielbasa flank tongue pig drumstick capicola swine short loin ham hock kevin.</p>
- </div>
- </div>
- </section>
- */
+export default Radium(Triptic);

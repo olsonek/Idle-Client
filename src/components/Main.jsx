@@ -18,6 +18,7 @@ const style = {
 };
 
 export default Dimensions()(React.createClass({
+    displayName: 'Main',
     emitter: EventEmitter,
     createEmitter: function () {
         this.emitter = new EventEmitter();

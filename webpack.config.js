@@ -9,7 +9,7 @@ module.exports = {
     module: {
         loaders: [
             {test: /\.jsx?$/, exclude: /node_modules/, loader: 'react-hot!babel'},
-            {test: /\.css$/, exclude: /node_modules/, loader: "style-loader!css-loader"},
+            {test: /\.css$/, exclude: /node_modules/, loader: "style!css"},
             {test: /\.(png|jpg)$/, exclude: /node_modules/, loader: 'file-loader?name=images/[name].[ext]'}
         ]
     },
